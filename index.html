@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Evaluaciones</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#fbfaf8] min-h-screen flex items-center justify-center p-5 relative">
+    <!-- Pantalla de inicio -->
+    <div id="inicio" class="screen active relative">
+        <!-- Fondo con logo grande y opaco -->
+        <img src="images/innovaImage.png" alt="InnovaFood" class="pointer-events-none select-none fixed inset-0 w-full h-full object-contain opacity-10 z-0" style="object-position: top center;"/>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h1 class="text-blue-600 text-center text-6xl font-extrabold -tracking-wider mb-2">InnovaFood</h1>
+            <h2 class="text-gray-900 text-center text-4xl font-bold -tracking-tight mb-4">Sistema de Evaluaciones</h2>
+            <p class="text-gray-600 text-center text-xl mb-16">Hacerlo tu mismo es mejor</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                    <div id="card-eval-1" class="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center shadow-lg hover:shadow-2xl border border-blue-200 cursor-pointer transition-all duration-500 hover:-translate-y-4 hover:scale-105 group" onclick="iniciarEvaluacion(1)">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 text-white text-5xl font-extrabold rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-400/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">1</div>
+                        <h2 class="text-gray-900 text-2xl font-bold mb-3 -tracking-tight">Evaluación Uno</h2>
+                        <p class="text-gray-600 text-lg font-medium mb-8">15 preguntas - 15 minutos</p>
+                        <button class="bg-blue-500 text-white px-12 py-4 rounded-full text-lg font-bold shadow-md hover:bg-blue-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 tracking-wide">Comenzar</button>
+                </div>
+                <div id="card-eval-2" class="bg-white/80 backdrop-blur-md rounded-3xl p-12 text-center shadow-lg hover:shadow-2xl border border-blue-200 cursor-pointer transition-all duration-500 hover:-translate-y-4 hover:scale-105 group" onclick="iniciarEvaluacion(2)">
+                                <div id="msg-evaluaciones-completadas" class="hidden text-center text-2xl font-bold text-green-700 bg-green-100 border border-green-300 rounded-2xl p-8 mb-8">¡Evaluaciones completadas! Ya no puedes volver a resolverlas.</div>
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 text-white text-5xl font-extrabold rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-400/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">2</div>
+                    <h2 class="text-gray-900 text-2xl font-bold mb-3 -tracking-tight">Evaluación Dos</h2>
+                    <p class="text-gray-600 text-lg font-medium mb-8">15 preguntas - 15 minutos</p>
+                    <button class="bg-blue-500 text-white px-12 py-4 rounded-full text-lg font-bold shadow-md hover:bg-blue-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 tracking-wide">Comenzar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla de evaluación -->
+    <div id="evaluacion" class="screen">
+        <div class="max-w-4xl mx-auto w-full">
+            <div class="bg-white rounded-2xl p-8 flex flex-col md:flex-row justify-between items-center mb-6 shadow-lg border border-gray-200">
+                <div>
+                    <h2 id="titulo-evaluacion" class="text-gray-900 text-3xl font-bold -tracking-tight">Evaluación</h2>
+                    <p class="text-red-600 text-base font-semibold mt-2">Solo tienes 1 intento para resolver el cuestionario.</p>
+                </div>
+                <div class="flex items-center gap-3 text-2xl font-bold text-slate-700 mt-4 md:mt-0">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span id="tiempo">15:00</span>
+                </div>
+            </div>
+            
+            <div class="bg-gray-200 h-3 rounded-full mb-8 overflow-hidden shadow-inner">
+                <div id="progress" class="bg-gradient-to-r from-slate-600 to-slate-700 h-full w-0 rounded-full shadow-md transition-all duration-500"></div>
+            </div>
+            
+            <div id="preguntas-container" class="space-y-6 mb-8">
+                <!-- Las preguntas se generan dinámicamente -->
+            </div>
+            
+            <button id="btn-finalizar" class="w-full bg-blue-500 text-white px-12 py-5 rounded-full text-xl font-bold shadow-md hover:bg-blue-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 tracking-wide" onclick="finalizarEvaluacion()">
+                Finalizar Evaluación
+            </button>
+        </div>
+    </div>
+
+    <!-- Pantalla de resultados -->
+    <div id="resultados" class="screen">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl p-16 text-center shadow-2xl border border-gray-200">
+                <div class="text-6xl mb-5 animate-bounce">🎉</div>
+                <h1 class="text-gray-900 text-5xl font-extrabold mb-8">¡Evaluación Completada!</h1>
+                <div class="flex items-center justify-center gap-3 my-8">
+                    <div class="text-8xl font-black bg-gradient-to-r from-slate-600 to-slate-800 bg-clip-text text-transparent" id="nota-final">0</div>
+                    <div class="text-3xl text-gray-400">/ 10</div>
+                </div>
+                <p id="mensaje-motivacional" class="text-gray-600 text-2xl italic my-10 leading-relaxed font-medium"></p>
+                <div class="grid grid-cols-3 gap-6 my-12 bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                    <div class="text-center">
+                        <div class="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-2">Correctas</div>
+                        <div class="text-gray-900 text-4xl font-extrabold" id="correctas">0</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-2">Incorrectas</div>
+                        <div class="text-gray-900 text-4xl font-extrabold" id="incorrectas">0</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-600 text-sm font-semibold uppercase tracking-wider mb-2">Tiempo usado</div>
+                        <div class="text-gray-900 text-4xl font-extrabold" id="tiempo-usado">0:00</div>
+                    </div>
+                </div>
+                
+                <div class="my-10 text-left">
+                    <h3 class="text-gray-900 text-3xl font-bold text-center mb-8">Revisión de Respuestas</h3>
+                    <div id="revision-preguntas"></div>
+                </div>
+                
+                <button class="bg-blue-500 text-white px-16 py-5 rounded-full text-xl font-bold shadow-md hover:bg-blue-600 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 tracking-wide mt-8" onclick="volverAlInicio()">
+                    Volver al Inicio
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
