@@ -585,28 +585,280 @@ h1 {
 /* Responsive */
 @media (max-width: 768px) {
     h1 {
-        font-size: 2em;
+        font-size: 2.5em;
+    }
+    
+    .main-title {
+        font-size: 1.8em;
+    }
+    
+    .subtitle {
+        font-size: 1.1em;
+        margin-bottom: 40px;
     }
     
     .panels {
         grid-template-columns: 1fr;
     }
     
+    .panel {
+        padding: 35px 25px;
+    }
+    
+    .panel-number {
+        width: 80px;
+        height: 80px;
+        font-size: 2.5em;
+    }
+    
     .header-evaluacion {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+        padding: 25px;
+    }
+    
+    .header-evaluacion h2 {
+        font-size: 1.8em;
+    }
+    
+    .pregunta-card {
+        padding: 25px 20px;
+    }
+    
+    .pregunta-texto {
+        font-size: 1.2em;
+    }
+    
+    .opcion {
+        padding: 15px 20px;
     }
     
     .estadisticas {
         grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 25px;
+    }
+    
+    .stat-value {
+        font-size: 1.8em;
     }
     
     .resultado-card {
         padding: 40px 20px;
     }
     
+    .resultado-card h1 {
+        font-size: 2em;
+    }
+    
+    .nota-grande {
+        font-size: 4em;
+    }
+    
+    .sobre {
+        font-size: 1.8em;
+    }
+    
+    .mensaje-motivacional {
+        font-size: 1.2em;
+        margin: 25px 0;
+    }
+    
+    .revision-pregunta {
+        padding: 15px;
+    }
+    
+    .revision-texto {
+        font-size: 1em;
+    }
+    
+    .btn-primary {
+        padding: 14px 40px;
+        font-size: 1em;
+    }
+}
+
+/* Mobile Small - Extra breakpoint for very small screens */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        letter-spacing: -1px;
+    }
+    
+    .main-title {
+        font-size: 1.5em;
+    }
+    
+    .subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+    
+    .panel {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .panel-number {
+        width: 70px;
+        height: 70px;
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+    
+    .panel h2 {
+        font-size: 1.5em;
+    }
+    
+    .panel p {
+        font-size: 1em;
+        margin-bottom: 25px;
+    }
+    
+    .header-evaluacion {
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .header-evaluacion h2 {
+        font-size: 1.5em;
+    }
+    
+    .timer {
+        font-size: 1.3em;
+    }
+    
+    .pregunta-card {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .pregunta-texto {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+    }
+    
+    .opcion {
+        padding: 12px 15px;
+        gap: 10px;
+        font-size: 0.95em;
+    }
+    
+    .opcion input[type="radio"] {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .resultado-card {
+        padding: 30px 15px;
+        border-radius: 20px;
+    }
+    
+    .confetti {
+        font-size: 3em;
+        margin-bottom: 15px;
+    }
+    
+    .resultado-card h1 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+    
+    .calificacion {
+        margin: 25px 0;
+        gap: 8px;
+    }
+    
     .nota-grande {
         font-size: 3.5em;
+    }
+    
+    .sobre {
+        font-size: 1.5em;
+    }
+    
+    .mensaje-motivacional {
+        font-size: 1.1em;
+        margin: 20px 0;
+    }
+    
+    .estadisticas {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 20px;
+        margin: 25px 0;
+    }
+    
+    .stat-label {
+        font-size: 0.8em;
+    }
+    
+    .stat-value {
+        font-size: 1.6em;
+    }
+    
+    .revision-section {
+        margin: 30px 0;
+    }
+    
+    .revision-titulo {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+    }
+    
+    .revision-pregunta {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+    
+    .revision-texto {
+        font-size: 0.95em;
+        margin-bottom: 12px;
+    }
+    
+    .revision-respuesta {
+        padding: 10px 12px;
+        font-size: 0.9em;
+    }
+    
+    .revision-estado {
+        padding: 5px 12px;
+        font-size: 0.8em;
+    }
+    
+    .btn-primary {
+        padding: 12px 35px;
+        font-size: 0.95em;
+    }
+    
+    .btn-large {
+        padding: 14px 40px;
+        font-size: 1em;
+    }
+}
+
+/* Tablet landscape */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .panels {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .panel {
+        padding: 40px 35px;
+    }
+    
+    .estadisticas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .resultado-card {
+        padding: 50px 35px;
     }
 }
