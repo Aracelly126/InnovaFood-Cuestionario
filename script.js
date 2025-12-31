@@ -115,7 +115,7 @@ const evaluaciones = {
             pregunta: "¿Cuál es una práctica correcta durante el lavado de manos?",
             opciones: [
                 "Secarse con trapos reutilizables",
-                "Usar aire o toallas desechables",
+                "Usar toallas desechables",
                 "Enjuagar rápidamente",
                 "Usar solo agua"
             ],
